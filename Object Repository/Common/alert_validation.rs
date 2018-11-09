@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <WebElementEntity>
    <description></description>
-   <name>a_Logout</name>
+   <name>alert_validation</name>
    <tag></tag>
-   <elementGuidId>c4a16f28-1f49-407b-833c-98f98aa91287</elementGuidId>
+   <elementGuidId>88cb9b9f-ccee-429f-8d09-1f19a4997b5a</elementGuidId>
    <selectorCollection>
       <entry>
          <key>BASIC</key>
-         <value></value>
       </entry>
    </selectorCollection>
    <selectorMethod>BASIC</selectorMethod>
@@ -17,6 +16,6 @@
       <matchCondition>equals</matchCondition>
       <name>xpath</name>
       <type>Main</type>
-      <value>//a[contains(text(),&quot;Log Out&quot;)]</value>
+      <value>//div[@class=&quot;alert alert-danger&quot;]</value>
    </webElementProperties>
 </WebElementEntity>
