@@ -76,6 +76,8 @@ WebUI.selectOptionByValue(findTestObject('SupplierCreation/select_assign',[('nam
 
 def dbcheckbox =findTestData('DB/Checkbox_Admin')
 
+/*---------Check the checkboxes----------------*/
+
 for(int x=1; x<=dbcheckbox.getRowNumbers(); x++)
 {
 	for(int y=1; y<=dbcheckbox.getColumnNumbers(); y++)
@@ -83,6 +85,8 @@ for(int x=1; x<=dbcheckbox.getRowNumbers(); x++)
 		WebUI.click(findTestObject('Common/checkbox_value', [('value') : dbcheckbox.getValue(y,x)]))
 	}
 }
+
+/*----Submit the form and verify no validation box is displayed------*/
 
 WebUI.click(findTestObject('Common/button_Submit'))
 
@@ -98,6 +102,5 @@ WebUI.verifyElementPresent(findTestObject('Common/verify_admin', [('value') : fn
 	
 WebUI.click(findTestObject('Common/a_Logout')) 
 	
-
 WebUI.closeBrowser()
 

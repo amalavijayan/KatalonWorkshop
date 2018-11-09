@@ -86,11 +86,7 @@ WebUI.click(findTestObject('Common/textbox_name', [('name') : 'fto']))
 
 WebUI.click(findTestObject('AdminCreation/dropdown_input', [('value') : 's2id_locationlist1']))
 
-//WebUI.waitForElementClickable(findTestObject('TourCreation/input_location'), 5)
-
 WebUI.setText(findTestObject('TourCreation/input_location'), data.internallyGetValue(x, 0))
-
-//WebUI.delay(3)
 
 WebUI.click(findTestObject('TourCreation/select_location', [('value') : data.internallyGetValue(x, 0)]))
 
