@@ -37,7 +37,7 @@ def dbdata = findTestData('DB/Admin_details')
 def dbobject = findTestData('DB/Object_repo_admin')
 
 /*-----Filling up form using data from db------*/
-//int k = 1
+
 int i
 for(i=1; i<= dbobject.getColumnNumbers(); i++)
 {

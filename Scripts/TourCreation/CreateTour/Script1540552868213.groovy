@@ -96,8 +96,6 @@ WebUI.click(findTestObject('TourCreation/select_location', [('value') : data.int
 
 WebUI.click(findTestObject('Common/a_link', [('link') : '#INCLUSIONS']))
 
-//int i
-
 for (int i = 203; i < 245; i++) {
     if (((((i == 203) || (i == 210)) || (i == 211)) || (i == 213)) || (i == 220)) {
     } else {
@@ -106,8 +104,6 @@ for (int i = 203; i < 245; i++) {
 }
 
 WebUI.click(findTestObject('Common/a_link', [('link') : '#EXCLUSIONS']))
-
-//int j
 
 for (int j = 250; j < 265; j++) {
     if (((((((j == 253) || (j == 254)) || (j == 255)) || (j == 256)) || (j == 257)) || (j == 258)) || (j == 259)) {
