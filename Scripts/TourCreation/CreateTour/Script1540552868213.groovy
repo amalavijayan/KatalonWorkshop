@@ -86,11 +86,11 @@ WebUI.click(findTestObject('Common/textbox_name', [('name') : 'fto']))
 
 WebUI.click(findTestObject('AdminCreation/dropdown_input', [('value') : 's2id_locationlist1']))
 
-WebUI.waitForElementClickable(findTestObject('AdminCreation/input_class'), 10)
+//WebUI.waitForElementClickable(findTestObject('TourCreation/input_location'), 5)
 
-WebUI.setText(findTestObject('AdminCreation/input_class'), data.internallyGetValue(x, 0))
+WebUI.setText(findTestObject('TourCreation/input_location'), data.internallyGetValue(x, 0))
 
-WebUI.delay(3)
+//WebUI.delay(3)
 
 WebUI.click(findTestObject('TourCreation/select_location', [('value') : data.internallyGetValue(x, 0)]))
 
@@ -112,14 +112,19 @@ for (int j = 250; j < 265; j++) {
     }
 }
 
+/*----Submit the form and verify no validation box is displayed------*/
+
 WebUI.click(findTestObject('TourCreation/button_Submit'))
 
+WebUI.verifyElementNotPresent(findTestObject('AdminCreation/alert_validation'), 1)
+
 /*----Verify the tour is created and Logout------*/
+
 WebUI.delay(3)
 
 WebUI.verifyElementText(findTestObject('TourCreation/verify_tour', [('value') : data.internallyGetValue(0, 0)]), data.internallyGetValue(
         0, 0))
 
-WebUI.click(findTestObject('AdminCreation/a_Logout'))
+WebUI.click(findTestObject('Common/a_Logout'))
 
 WebUI.closeBrowser()

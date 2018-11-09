@@ -33,34 +33,21 @@ WebUI.click(findTestObject('Common/button_type', [('type') : 'submit']))
 
 def data_xls =TestDataFactory.findTestData('ExcelFile/SupplierDetails')
 
+def dbobject = findTestData('DB/Object_repo_admin')
+
 /*-----Filling up form using data from excel------*/
 
-int i=1
-
-WebUI.setText(findTestObject('Common/textbox_name', [('name') : 'fname']), data_xls.getValue(i++,1))
+int i
+for(i=1; i<= dbobject.getColumnNumbers(); i++)
+{
 	
-WebUI.setText(findTestObject('Common/textbox_name', [('name') : 'lname']), data_xls.getValue(i++,1))
-	
-WebUI.setText(findTestObject('Common/textbox_name', [('name') : 'email']), data_xls.getValue(i++,1))
-	
-WebUI.setText(findTestObject('Common/textbox_name', [('name') : 'password']), data_xls.getValue(i++,1))
-	
-WebUI.setText(findTestObject('Common/textbox_name', [('name') : 'mobile']), data_xls.getValue(i++,1))
-	
-WebUI.setText(findTestObject('Common/textbox_name', [('name') : 'address1']), data_xls.getValue(i++,1))
-	
-WebUI.setText(findTestObject('Common/textbox_name', [('name') : 'address2']), data_xls.getValue(i++,1))
+	WebUI.setText(findTestObject('Common/textbox_name', [('name') : dbobject.getValue(i,1)]), data_xls.getValue(i,1))
+}
 	
 WebUI.click(findTestObject('AdminCreation/dropdown_input',[('value') : 's2id_autogen1']))
 	
-WebUI.waitForElementClickable(findTestObject('AdminCreation/input_class'), 50)
-	
-WebUI.click(findTestObject('AdminCreation/input_class'))
-	
-WebUI.sendKeys(findTestObject('AdminCreation/input_class'), data_xls.getValue(i,1))
-	
-WebUI.delay(3)
-	
+WebUI.waitForElementClickable(findTestObject('AdminCreation/dropdown_search', [('value') : data_xls.getValue(i,1)]), 10)
+
 WebUI.click(findTestObject('AdminCreation/dropdown_search', [('value') : data_xls.getValue(i,1)]))
 	
 WebUI.delay(3)
@@ -85,47 +72,31 @@ WebUI.click(findTestObject('SupplierCreation/assign_dropdown', [('id') : 's2id_a
 
 WebUI.selectOptionByValue(findTestObject('SupplierCreation/select_assign',[('name') : 'cars[]']), data_xls.getValue(++i,1), false)
 
-WebUI.click(findTestObject('Common/checkbox_value', [('value') : 'addHotels']))
+/*---------Establish DB connection for Chckboxes-----------*/
 
-WebUI.click(findTestObject('Common/checkbox_value', [('value') : 'addTours']))
+def dbcheckbox =findTestData('DB/Checkbox_Admin')
 
-WebUI.click(findTestObject('Common/checkbox_value', [('value') : 'addCars']))
+for(int x=1; x<=dbcheckbox.getRowNumbers(); x++)
+{
+	for(int y=1; y<=dbcheckbox.getColumnNumbers(); y++)
+	{
+		WebUI.click(findTestObject('Common/checkbox_value', [('value') : dbcheckbox.getValue(y,x)]))
+	}
+}
 
-WebUI.click(findTestObject('Common/checkbox_value', [('value') : 'addbooking']))
+WebUI.click(findTestObject('Common/button_Submit'))
 
-WebUI.click(findTestObject('Common/checkbox_value', [('value') : 'addlocations']))
+WebUI.verifyElementNotPresent(findTestObject('Common/alert_validation'), 1)
 
-WebUI.click(findTestObject('Common/checkbox_value', [('value') : 'editHotels']))
+/*----Verify the supplier is created and Logout------*/
 
-WebUI.click(findTestObject('Common/checkbox_value', [('value') : 'editTours']))
+int j=1
 
-WebUI.click(findTestObject('Common/checkbox_value', [('value') : 'editCars']))
+String fname = data_xls.getValue(j++,1)
 
-WebUI.click(findTestObject('Common/checkbox_value', [('value') : 'editbooking']))
-
-WebUI.click(findTestObject('Common/checkbox_value', [('value') : 'editlocations']))
-
-WebUI.click(findTestObject('Common/checkbox_value', [('value') : 'deleteHotels']))
-
-WebUI.click(findTestObject('Common/checkbox_value', [('value') : 'deleteTours']))
-
-WebUI.click(findTestObject('Common/checkbox_value', [('value') : 'deleteCars']))
-
-WebUI.click(findTestObject('Common/checkbox_value', [('value') : 'deletebooking']))
-
-WebUI.click(findTestObject('Common/checkbox_value', [('value') : 'deletelocations']))
-
-WebUI.click(findTestObject('AdminCreation/button_Submit'))
-
-WebUI.verifyElementNotPresent(findTestObject('AdminCreation/alert_validation'), 1)
-
-/*----Verify the admin is created and Logout------*/
-
-WebUI.delay(3)
-
-WebUI.verifyElementPresent(findTestObject('AdminCreation/verify_admin', [('value') : 'Amala Test']), 10)
+WebUI.verifyElementPresent(findTestObject('Common/verify_admin', [('value') : fname]), 10)
 	
-WebUI.click(findTestObject('AdminCreation/a_Logout')) 
+WebUI.click(findTestObject('Common/a_Logout')) 
 	
 
 WebUI.closeBrowser()

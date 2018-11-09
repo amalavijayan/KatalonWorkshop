@@ -126,6 +126,6 @@ WebUI.delay(3)
 WebUI.verifyElementText(findTestObject('TourCreation/verify_tour', [('value') : data.internallyGetValue(0, 0)]), data.internallyGetValue(
         0, 0))
 
-WebUI.click(findTestObject('AdminCreation/a_Logout'))
+WebUI.click(findTestObject('Common/a_Logout'))
 
 WebUI.closeBrowser()

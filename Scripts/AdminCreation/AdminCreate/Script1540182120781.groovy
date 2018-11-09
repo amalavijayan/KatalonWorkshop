@@ -73,10 +73,10 @@ for(int x=1; x<=dbcheckbox.getRowNumbers(); x++)
 
 /*----Submit the form and verify no validation box is displayed------*/
 
-WebUI.click(findTestObject('AdminCreation/button_Submit'))
+WebUI.click(findTestObject('Common/button_Submit'))
 
-WebUI.verifyElementNotPresent(findTestObject('AdminCreation/alert_validation'), 1)
-
+WebUI.verifyElementNotPresent(findTestObject('Common/alert_validation'), 1)
+   
 
 /*----Verify the new admin is created------*/
 
@@ -92,9 +92,9 @@ String username = dbdata.getValue(j++,1)
 	
 String password = dbdata.getValue(j++,1)
 	
-WebUI.verifyElementPresent(findTestObject('AdminCreation/verify_admin', [('value') : fname]), 10)
+WebUI.verifyElementPresent(findTestObject('Common/verify_admin', [('value') : fname]), 10)
 	
-WebUI.click(findTestObject('AdminCreation/a_Logout'))
+WebUI.click(findTestObject('Common/a_Logout'))
 	
 
 /*--------Login with the newly created admin-------*/
@@ -107,7 +107,7 @@ WebUI.click(findTestObject('Common/button_type', [('type') : 'submit']))
 	
 WebUI.verifyElementText(findTestObject('AdminLogin/span_text', [('text') : fullname]), fullname)
 	
-WebUI.click(findTestObject('AdminCreation/a_Logout'))
+WebUI.click(findTestObject('Common/a_Logout'))
 
 WebUI.closeBrowser()
 
